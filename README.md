@@ -17,43 +17,46 @@ STEP-5: Display the cipher text obtained above.
 
 ## PROGRAM:
 ```
-
-def caesar_cipher_encrypt(text, key):
-    cipher = ""
-    for ch in text:
-        if ch.isupper():
-            cipher += chr((ord(ch) - ord('A') + key) % 26 + ord('A'))
-        elif ch.islower(): 
-            cipher += chr((ord(ch) - ord('a') + key) % 26 + ord('a'))
-        else:
-            cipher += ch  
-    return cipher
-def caesar_cipher_decrypt(cipher, key):
-    plain = ""
-    for ch in cipher:
-        if ch.isupper():  
-            plain += chr((ord(ch) - ord('A') - key) % 26 + ord('A'))
-        elif ch.islower():  
-            plain += chr((ord(ch) - ord('a') - key) % 26 + ord('a'))
-        else:
-            plain += ch
-    return plain
-plain = input("Enter the plain text: ")
-key = int(input("Enter the key value: "))
-
-print("\nPLAIN TEXT:", plain)
-
-cipher = caesar_cipher_encrypt(plain, key)
-print("ENCRYPTED TEXT:", cipher)
-
-decrypted = caesar_cipher_decrypt(cipher, key)
-print("DECRYPTED TEXT:", decrypted)
-
+#include <stdio.h> 
+#include <string.h> 
+#include <ctype.h> 
+void main() 
+{ 
+    char plain[10],cipher[10]; 
+    int key,i,length; 
+    int result; 
+    printf("\n Enter the plain text:"); 
+    scanf("%s", plain); 
+    printf("\n Enter the key value:"); 
+    scanf("%d", &key); 
+    printf("\n \n \t PLAIN TEXt: %s", plain); 
+    printf("\n \n \t ENCRYPTED TEXT:"); 
+    for(i=0, length = strlen(plain); i<length; i++) 
+    { 
+        cipher[i]=plain[i] + key; 
+        if (isupper(plain[i]) && (cipher[i] > 'Z')) 
+        cipher[i] = cipher[i] - 26; 
+        if (islower(plain[i]) && (cipher[i] > 'z')) 
+        cipher[i] = cipher[i] - 26; 
+        printf("%c", cipher[i]); 
+    } 
+    printf("\n \n \t AFTER DECRYPTION : "); 
+    for(i=0;i<length;i++) 
+    { 
+        plain[i]=cipher[i]-key; 
+        if(isupper(cipher[i])&&(plain[i]<'A')) 
+        plain[i]=plain[i]+26; 
+        if(islower(cipher[i])&&(plain[i]<'a')) 
+        plain[i]=plain[i]+26; 
+        printf("%c",plain[i]); 
+    } 
+}
 ```
 
 ## OUTPUT:
 
-<img width="1745" height="1077" alt="image" src="https://github.com/user-attachments/assets/b55fc9e2-6b71-4bde-9c9b-1b8afe76b90b" />
+<img width="1740" height="1070" alt="image" src="https://github.com/user-attachments/assets/9f0daa6d-4149-4b34-9329-76c0dc493f3a" />
+
 
 
 ## RESULT :
